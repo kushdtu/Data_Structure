@@ -1,54 +1,6 @@
 import sys
 
 '''
-Given an array of n positive integers and a positive integer s,
-find the minimal length of a contiguous subarray of which the sum ≥ s.
-If there isn't one, return 0 instead.
-
-Example: 
-
-Input: s = 7, nums = [2,3,1,2,4,3]
-Output: 2
-Explanation: the subarray [4,3] has the minimal length under the problem constraint.
-'''
-
-def minimumLengthSubarrayWithGivenSum(s, nums) -> int:
-    n = len(nums)
-    if n == 0:
-        return 0
-    elif n == 1:
-        if nums[0] >= s:
-            return 1
-        else:
-            return 0
-    curr_sum = 0
-    min_len = n + 1
-    start = 0
-    end = 0
-
-    while end < n:
-
-        while( curr_sum < s and end < n):
-            curr_sum += nums[end]
-            end += 1
-
-        while( curr_sum >= s and start < n):
-
-            if( end - start < min_len):
-                min_len = end - start
-                print(end, start, " min len : ", min_len)
-
-            curr_sum -= nums[start]
-            start += 1
-    
-    if min_len == n + 1:
-        return 0
-    else:
-        return min_len
-
-# print(minimumLengthSubarrayWithGivenSum(51, [1, 4, 45, 6, 0, 19]))
-
-'''
 Given a string s that consists of only uppercase English letters,
 you can perform at most k operations on that string. In one operation,
 you can choose any character of the string and change it to any other uppercase
